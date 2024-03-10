@@ -1,0 +1,27 @@
+=== Generated schedule for mkGaussTb ===
+
+Rule schedule
+-------------
+Rule: dut_convolve
+Predicate: dut_in.i_notEmpty && dut_out.i_notFull
+Blocking rules: (none)
+ 
+Rule: init
+Predicate: ! started
+Blocking rules: (none)
+ 
+Rule: pixels_in
+Predicate: dut_in.i_notFull && started && (read_y < 32'd469)
+Blocking rules: (none)
+ 
+Rule: pixels_out
+Predicate: dut_out.i_notEmpty && (! (writeCounter == n_pixels))
+Blocking rules: (none)
+ 
+Rule: clean_up
+Predicate: writeCounter == n_pixels
+Blocking rules: (none)
+ 
+Logical execution order: pixels_in, pixels_out, clean_up, init, dut_convolve
+
+=========================================
